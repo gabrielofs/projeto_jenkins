@@ -49,10 +49,10 @@ pipeline{
         steps {
           script {
             withCredentials([[$class: 'UsernamePasswordMultiBinding' ,
-                credentialsId: 'heroku' ,
-                  usernameVariable: 'USERNAME' , passwordVariable: 'PASSWORD' ]]) {
+                credentialsId: 'heroku',
+                  usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
                     sh "docker login -u $USERNAME -p $PASSWORD registry.heroku.com"
-                    sh "echo 'machine api.heroku.com login $USERNAME password $PASSWORD ' > ~/.netrc"
+                    sh "echo 'machine api.heroku.com login $USERNAME password $PASSWORD' > ~/.netrc"
                     sh "chmod 600 ~/.netrc"
                   }
                   // Tag docker img (in my case it was an image in dockerhub)
@@ -60,8 +60,8 @@ pipeline{
             sh "docker push registry.heroku.com/jenkins-pipeline-example/web"
             sh "/usr/bin/heroku container:release web --app=jenkins-pipeline-example"
             sh "docker logout registry.heroku.com"
-          }  
-        }
-    } 
+            }  
+          }
+      }   
   }
 }
