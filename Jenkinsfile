@@ -42,7 +42,7 @@ pipeline{
       agent any
       steps{
         sh label: '', script: '''
-        sudo docker container run -itd --name webserver$BUILD_NUMBER -p 5000:5000 webimage:$BUILD_NUMBER'''
+        sudo docker container run -d --name webserver$BUILD_NUMBER -p 5000:5000 webimage:$BUILD_NUMBER'''
       }
     }
     stage( 'Deploy to Heroku' ) {
