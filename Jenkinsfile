@@ -56,7 +56,7 @@ pipeline{
                     sh "chmod 600 ~/.netrc"
                   }
                   // Tag docker img (in my case it was an image in dockerhub)
-            sh "docker tag webimage: $BUILD_NUMBER registry.heroku.com/jenkins-pipeline-example/web"
+            sh "docker tag webimage:$BUILD_NUMBER registry.heroku.com/jenkins-pipeline-example/web"
             sh "docker push registry.heroku.com/jenkins-pipeline-example/web"
             sh "/usr/bin/heroku container:release web --app=jenkins-pipeline-example"
             sh "docker logout registry.heroku.com"
