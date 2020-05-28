@@ -46,7 +46,7 @@ pipeline{
       }
     }
     stage( 'Deploy to Heroku' ) {
-      agent none
+      agent any
         steps {
           script {
             withCredentials([[$class: 'UsernamePasswordMultiBinding' ,
